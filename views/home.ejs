@@ -133,12 +133,28 @@
               <img src="${weather.current.condition.icon}" alt="${weather.current.condition.text}" />
             </div>
           `;
+      // Update search history
+      updateSearchHistory();
         } catch (error) {
           // Display an error message
           weatherResult.innerHTML = `<p style="color: red;">${error.message}</p>`;
         }
       });
+
+      async function updateSearchHistory() {
+        try {
+          const response = await fetch('history');
+          const history = await response.json();
+          searchHistory.innerHTML = history.map(city => `<li>${city}</li>`).join('');
+        } catch (error) {
+          searchHistory.innerHTML = `<p style="color: red;">Failed to load search history.</p>`;
+        }
+      }
+
+      // Load search history on page load
+      updateSearchHistory();
     });
+
   </script>
 </body>
 </html>
