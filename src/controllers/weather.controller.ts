@@ -6,7 +6,7 @@ export class WeatherController {
   constructor(private readonly weatherService: WeatherService) {}
 
   @Render('home')
-  @Get('/')
+  @Get()
   async home(){}
 
   @Post('weather')
