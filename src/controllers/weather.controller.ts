@@ -8,9 +8,9 @@ export class WeatherController {
   constructor(private readonly weatherService: WeatherService) {}
 
   @Render('home')
-  @Get('/home')
+  @Get('/')
   async home() {
-    this.logger.log('GET /home');
+    this.logger.log('GET /');
   }
 
   @Post('weather')
