@@ -1,16 +1,21 @@
-import { Body, Controller, Get, Param, Post, Query, Render } from '@nestjs/common';
+import { Body, Controller, Get, Render, Logger, Post } from '@nestjs/common';
 import { WeatherService } from '../services/weather.service';
 
 @Controller('weather')
 export class WeatherController {
+  private readonly logger = new Logger(WeatherController.name);
+
   constructor(private readonly weatherService: WeatherService) {}
 
   @Render('home')
-  @Get("/home")
-  async home(){}
+  @Get('/home')
+  async home() {
+    this.logger.log('GET /home');
+  }
 
   @Post('weather')
   async getWeather(@Body('city') city: string) {
+    this.logger.log(`POST /weather with city: ${city}`);
     try {
       const weather = await this.weatherService.getWeather(city);
       return { message: null, weather };
@@ -21,6 +26,7 @@ export class WeatherController {
 
   @Get('history')
   getSearchHistory() {
+    this.logger.log('GET /history');
     return this.weatherService.getSearchHistory();
   }
 }
