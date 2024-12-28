@@ -1,12 +1,12 @@
 import { Body, Controller, Get, Param, Post, Query, Render } from '@nestjs/common';
-import { WeatherService } from 'src/services/weather.service';
+import { WeatherService } from '../services/weather.service';
 
 @Controller('weather')
 export class WeatherController {
   constructor(private readonly weatherService: WeatherService) {}
 
   @Render('home')
-  @Get()
+  @Get("/home")
   async home(){}
 
   @Post('weather')

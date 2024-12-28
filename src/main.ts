@@ -13,6 +13,13 @@ async function bootstrap() {
   app.setBaseViewsDir(join(__dirname, '..', 'views')); // Set the directory for EJS files
   app.setViewEngine('ejs'); // Use EJS as the templating engine
 
+  app.enableCors({  
+    origin: ['http://localhost:3000', 'http://your-frontend-url.com'], // Replace with your frontend URLs  
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Allowed methods  
+    credentials: true, // Allow credentials such as cookies or HTTP auth  
+    exposedHeaders: ['Content-Length', 'X-Custom-Header'], // Any additional headers you want to expose  
+  });  
+
   const port = configService.get<number>('PORT') || 3000;
   await app.listen(port);
   console.log(`Application is running on: ${await app.getUrl()}`);

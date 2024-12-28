@@ -1,15 +1,18 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { Services'Service } from './services'.service';
+import { HttpModule } from '@nestjs/axios'; // Use only HttpModule
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { WeatherService } from './weather.service';
 
-describe('Services'Service', () => {
-  let service: Services'Service;
+describe('WeatherService', () => {
+  let service: WeatherService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [Services'Service],
+      imports: [HttpModule, ConfigModule.forRoot()], // Add HttpModule and ConfigModule
+      providers: [WeatherService, ConfigService], // Remove HttpService from providers
     }).compile();
 
-    service = module.get<Services'Service>(Services'Service);
+    service = module.get<WeatherService>(WeatherService);
   });
 
   it('should be defined', () => {
