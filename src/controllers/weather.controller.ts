@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Render, Logger, Post } from '@nestjs/common';
 import { WeatherService } from '../services/weather.service';
 
-@Controller('weather')
+@Controller()
 export class WeatherController {
   private readonly logger = new Logger(WeatherController.name);
 
