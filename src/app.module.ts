@@ -3,7 +3,6 @@ import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
 import { WeatherService } from './services/weather.service';
 import { WeatherController } from './controllers/weather.controller';
-import { join } from 'path';
 
 @Module({
   imports: [

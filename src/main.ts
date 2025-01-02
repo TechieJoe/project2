@@ -20,6 +20,7 @@ async function bootstrap() {
     exposedHeaders: ['Content-Length', 'X-Custom-Header'], // Any additional headers you want to expose  
   });  
 
+  app.setGlobalPrefix('api');
   const port = configService.get<number>('PORT') || 3000;
   await app.listen(port);
   console.log(`Application is running on: ${await app.getUrl()}`);

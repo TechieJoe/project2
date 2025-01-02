@@ -4,7 +4,6 @@ import { WeatherService } from '../services/weather.service';
 @Controller('weather')
 export class WeatherController {
   private readonly logger = new Logger(WeatherController.name);
-
   constructor(private readonly weatherService: WeatherService) {}
 
   @Render('home')
